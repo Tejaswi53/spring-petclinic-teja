@@ -29,7 +29,7 @@ pipeline {
         stage ('quality check') {
             steps {
                 script {
-                    timeout(time: 30, unit: 'MINUTES') {
+                    timeout(time: 2, unit: 'MINUTES') {
                         waitForQualityGate abort
                     }
 
