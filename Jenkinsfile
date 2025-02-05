@@ -12,7 +12,8 @@ pipeline {
      stages {
         stage('git clone') {
             steps{
-                https://github.com/Tejaswi53/spring-petclinic-teja.git
+                git branch: 'main', url: 'https://github.com/Tejaswi53/spring-petclinic-teja.git'
+                
             }
         }
 
