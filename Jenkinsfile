@@ -4,7 +4,7 @@ pipeline {
      environment {
         NEXUS_VERSION = "nexus3"
         NEXUS_PROTOCOL = "http"
-        NEXUS_URL = "34.57.178.196:8081"
+        NEXUS_URL = "35.224.117.172:8081"
         NEXUS_REPOSITORY = "maven-snapshots"
         NEXUS_CREDENTIAL_ID = "nexus-integration"
      }
@@ -13,15 +13,27 @@ pipeline {
         stage('git clone') {
             steps{
                 git branch: 'main', url: 'https://github.com/Tejaswi53/spring-petclinic-teja.git'
-                
             }
         }
 
         stage('maven build') {
             steps{
                 script {
-                    sh 'mvn clean package'
+                    withSonarQubeEnv('My SonarQube Server') {
+                        sh 'mvn clean package sonar:sonar'
+                    }
                 }             
+            }
+        }
+
+        stage ('quality check') {
+            steps {
+                script {
+                    timeout(time: 10, unit: 'MINUTES') {
+                        waitForQualityGate abort
+                    }
+
+                }
             }
         }
 
