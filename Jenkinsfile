@@ -50,7 +50,7 @@ pipeline {
                                 file: artifactPath,
                                 type: pom.packaging],
 
-                                [artifactID: pom.artifactId
+                                [artifactID: pom.artifactId,
                                 classifier:'',
                                 file: "pom.xml",
                                 type: "pom"]
