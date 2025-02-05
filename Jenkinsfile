@@ -45,12 +45,12 @@ pipeline {
                             repository: NEXUS_REPOSITORY,
                             credentialsId: NEXUS_CREDENTIAL_ID,
                             artifacts: [
-                                [artifactID: pom.artifactId,
+                                [artifactId: pom.artifactId,
                                 classifier:'',
                                 file: artifactPath,
                                 type: pom.packaging],
 
-                                [artifactID: pom.artifactId,
+                                [artifactId: pom.artifactId,
                                 classifier:'',
                                 file: "pom.xml",
                                 type: "pom"]
