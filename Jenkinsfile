@@ -19,20 +19,29 @@ pipeline {
         stage('maven build') {
             steps{
                 script {
-                    withSonarQubeEnv('sonarqube') {
+                    withSonarQubeEnv('My SonarQube Server') {
                         sh 'mvn clean package sonar:sonar'
                     }
                 }             
             }
         }
 
-        stage ('quality check') {
+        /*stage ('quality check') {
             steps {
                 script {
-                    timeout(time: 2, unit: 'MINUTES') {
+                    timeout(time: 10, unit: 'MINUTES') {
                         waitForQualityGate abortPipeline: true
                     }
 
+                }
+            }
+        }*/
+
+        stage("Quality Gate"){
+          timeout(time: 1, unit: 'HOURS') {
+              def qg = waitForQualityGate()
+              if (qg.status != 'OK') {
+                  error "Pipeline aborted due to quality gate failure: ${qg.status}"
                 }
             }
         }
