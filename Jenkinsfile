@@ -11,13 +11,13 @@ pipeline {
 
      stages {
         stage('git clone') {
-            steps{
+            steps {
                 git branch: 'main', url: 'https://github.com/Tejaswi53/spring-petclinic-teja.git'
             }
         }
 
         stage('maven build') {
-            steps{
+            steps {
                 script {
                     withSonarQubeEnv('sonarqube') {
                         sh 'mvn clean package sonar:sonar'
@@ -26,7 +26,7 @@ pipeline {
             }
         }
 
-        /*stage ('quality check') {
+        stage('quality check') {
             steps {
                 script {
                     timeout(time: 10, unit: 'MINUTES') {
@@ -35,15 +35,6 @@ pipeline {
 
                 }
             }
-        }*/
-
-        stage("Quality Gate"){
-            steps {
-                timeout(time: 1, unit: 'HOURS') {
-                     waitForQualityGate abortPipeline: true
-                }
-            }
-            
         }
 
         stage('uploading to nexus') {
@@ -85,5 +76,14 @@ pipeline {
                 }
             }
         }
-     }
+
+        stage('renaming') {
+            steps {
+                script {
+                    sh 'mv artifactPath pom.artifactId-${env.BUILD_NUMBER}-${env.BRANCH_NAME}'
+
+                }
+            }
+        }
+    }
 }
