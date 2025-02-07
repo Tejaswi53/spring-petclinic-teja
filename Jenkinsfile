@@ -84,7 +84,8 @@ pipeline {
                      //echo "${pom.artifactId}"
                      sh '''
                          ls -l
-                         cd /target
+                         cd target
+                         ls -l
                          mv spring-petclinic-3.4.0-SNAPSHOT.jar pom.artifactId-BUILD_NUMBER-BRANCH_NAME
                      '''
                 }
