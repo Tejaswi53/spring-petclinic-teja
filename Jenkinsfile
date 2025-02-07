@@ -80,7 +80,7 @@ pipeline {
         stage('renaming') {
             steps {
                 script {
-                     echo "${artifactPath}"  //pom.artifactId-${BUILD_NUMBER}-${BRANCH_NAME}
+                     echo "${filesByGlob[0].name}"  //pom.artifactId-${BUILD_NUMBER}-${BRANCH_NAME}
 
                 }
             }
