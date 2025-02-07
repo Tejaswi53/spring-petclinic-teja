@@ -95,8 +95,6 @@ pipeline {
                 script {
                     sh '''
                       pwd
-                      cd ${WORKSPACE}/target
-                      pwd
                       sudo docker build --build-arg source_jar=spring-petclinic-${BUILD_NUMBER}-${BRANCH_NAME}.jar -t spc4 .
                      
                      '''
