@@ -82,7 +82,11 @@ pipeline {
                 script {
                      //echo "${filesByGlob[0].name}"  //pom.artifactId-${BUILD_NUMBER}-${BRANCH_NAME}
                      //echo "${pom.artifactId}"
-                     sh 'mv filesByGlob[0].name pom.artifactId-BUILD_NUMBER-BRANCH_NAME'
+                     sh '''
+                         ls -l
+                         cd /target
+                         mv spring-petclinic-3.4.0-SNAPSHOT.jar pom.artifactId-BUILD_NUMBER-BRANCH_NAME
+                     '''
                 }
             }
         }
