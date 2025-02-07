@@ -83,7 +83,7 @@ pipeline {
                     sh '''
                         ls ${WORKSPACE}/target
                         mv ${WORKSPACE}/target/spring-petclinic-3.4.0-SNAPSHOT.jar spring-petclinic-${BUILD_NUMBER}-${BRANCH_NAME}.jar
-                        ls ${WORKSPACE}/taget
+                        ls ${WORKSPACE}/target
                         echo "${WORKSPACE}"
                     '''                   
                 }
