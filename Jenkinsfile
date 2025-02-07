@@ -80,14 +80,16 @@ pipeline {
         stage('renaming') {
             steps {
                 script {
-                     //echo "${filesByGlob[0].name}"  //pom.artifactId-${BUILD_NUMBER}-${BRANCH_NAME}
-                     //echo "${pom.artifactId}"
-                     sh '''
-                         ls -l
-                         cd target
-                         ls -l
-                         mv spring-petclinic-3.4.0-SNAPSHOT.jar spring-petclinic-${BUILD_NUMBER}-${BRANCH_NAME}.jar
-                         ls -l
+                    sh 'mv artifactPath pom.artifactId-${env.BUILD_NUMBER}-${env.BRANCH_NAME}'
+                }
+            }
+        }
+
+        stage('docker build') {
+            steps {
+                script {
+                    sh '''
+                      sudo docker build -t spc4 .
                      '''
                 }
             }
