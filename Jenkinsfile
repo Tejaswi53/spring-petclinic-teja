@@ -83,6 +83,7 @@ pipeline {
                     sh '''
                         ls ${WORKSPACE}/target
                         mv ${WORKSPACE}/target/spring-petclinic-3.4.0-SNAPSHOT.jar spring-petclinic-${BUILD_NUMBER}-${BRANCH_NAME}.jar
+                        ls ${WORKSPACE}/taget
                         echo "${WORKSPACE}"
                     '''                   
                 }
@@ -93,6 +94,7 @@ pipeline {
             steps {
                 script {
                     sh '''
+                      pwd
                       sudo docker build --build-arg source_jar=workspace/target/spring-petclinic-${BUILD_NUMBER}-${BRANCH_NAME}.jar -t spc4 .
                      
                      '''
