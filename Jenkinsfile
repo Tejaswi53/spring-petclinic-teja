@@ -80,7 +80,7 @@ pipeline {
         stage('renaming') {
             steps {
                 script {
-                    sh 'mv artifactPath pom.artifactId-${env.BUILD_NUMBER}-${env.BRANCH_NAME}'
+                    sh 'echo artifactPath'  //pom.artifactId-${BUILD_NUMBER}-${BRANCH_NAME}'
 
                 }
             }
