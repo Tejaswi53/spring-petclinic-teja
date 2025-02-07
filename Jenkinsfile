@@ -81,7 +81,7 @@ pipeline {
             steps {
                 script {
                      //echo "${filesByGlob[0].name}"  //pom.artifactId-${BUILD_NUMBER}-${BRANCH_NAME}
-                     echo "${pom.artifactId}
+                     echo "${pom.artifactId}"
                 }
             }
         }
