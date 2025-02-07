@@ -80,7 +80,7 @@ pipeline {
         stage('renaming') {
             steps {
                 script {
-                    sh echo "${artifactPath}"  //pom.artifactId-${BUILD_NUMBER}-${BRANCH_NAME}
+                     echo "${artifactPath}"  //pom.artifactId-${BUILD_NUMBER}-${BRANCH_NAME}
 
                 }
             }
