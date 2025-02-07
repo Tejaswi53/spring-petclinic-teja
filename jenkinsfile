@@ -80,7 +80,7 @@ pipeline {
         stage('renaming') {
             steps {
                 script {
-                    sh 'mv artifactPath pom.artifactId-${env.BUILD_NUMBER}-${env.BRANCH_NAME}'
+                    sh 'mv spring-petclinic-3.4.0-SNAPSHOT.jar spring-petclinic-${BUILD_NUMBER}-${BRANCH_NAME}.jar'
                 }
             }
         }
