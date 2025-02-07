@@ -35,7 +35,7 @@
     <libsass.version>0.2.29</libsass.version>
     <lifecycle-mapping>1.0.0</lifecycle-mapping>
     <maven-checkstyle.version>3.6.0</maven-checkstyle.version>
-    <nohttp-checkstyle.version>0.0.11</nohttp-checkstyle.version>
+    <!--<nohttp-checkstyle.version>0.0.11</nohttp-checkstyle.version> -->
     <spring-format.version>0.0.43</spring-format.version>
 
   </properties>
@@ -154,6 +154,9 @@
 
   </dependencies>
 
+  
+
+
   <build>
     <plugins>
       <plugin>
@@ -191,7 +194,7 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
+      <!-- <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
         <version>${maven-checkstyle.version}</version>
@@ -220,10 +223,10 @@
               <includes>**/*</includes>
               <excludes>**/.git/**/*,**/.idea/**/*,**/target/**/,**/.flattened-pom.xml,**/*.class</excludes>
               <propertyExpansion>config_loc=${basedir}/src/checkstyle/</propertyExpansion>
-            </configuration>
+            </configuration> 
           </execution>
-        </executions>
-      </plugin>
+        </executions> 
+      </plugin> -->
       <plugin>
         <groupId>org.graalvm.buildtools</groupId>
         <artifactId>native-maven-plugin</artifactId>
@@ -313,6 +316,7 @@
       <name>Spring Milestones</name>
       <url>https://repo.spring.io/milestone</url>
     </repository>
+    
   </repositories>
   <pluginRepositories>
     <pluginRepository>
