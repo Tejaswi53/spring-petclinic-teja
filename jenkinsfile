@@ -80,11 +80,11 @@ pipeline {
         stage('renaming') {
             steps {
                 script {
-                    sh '''
-                        ls ${WORKSPACE}/target 
+                    // sh '''
+                    sh 'ls ${WORKSPACE}/target'
                         // mv ${WORKSPACE}/target/spring-petclinic-3.4.0-SNAPSHOT.jar spring-petclinic-${BUILD_NUMBER}-${BRANCH_NAME}.jar
-                        echo "${WORKSPACE}"
-                    '''
+                        // echo "${WORKSPACE}"
+                    
                 }
             }
         }
