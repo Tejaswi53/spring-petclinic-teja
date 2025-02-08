@@ -110,8 +110,8 @@ pipeline {
                   script {
                     sh '''
                     aws ecr get-login-password --region us-east-1 | sudo docker login --username AWS --password-stdin 982534389470.dkr.ecr.us-east-1.amazonaws.com
-                    docker tag petclinicapp:${BUILD_NUMBER} 982534389470.dkr.ecr.us-east-1.amazonaws.com/petclinic:${BUILD_NUMBER}
-                    docker push 982534389470.dkr.ecr.us-east-1.amazonaws.com/petclinic:${BUILD_NUMBER}
+                    sudo docker tag petclinicapp:${BUILD_NUMBER} 982534389470.dkr.ecr.us-east-1.amazonaws.com/petclinic:${BUILD_NUMBER}
+                    sudo docker push 982534389470.dkr.ecr.us-east-1.amazonaws.com/petclinic:${BUILD_NUMBER}
                     '''
                   }
                 }
