@@ -95,9 +95,21 @@ pipeline {
                 script {
                     sh '''
                       pwd
-                      sudo docker build --build-arg source_jar=spring-petclinic-${BUILD_NUMBER}-${BRANCH_NAME}.jar -t spc4 .
+                      sudo docker build --build-arg source_jar=spring-petclinic-${BUILD_NUMBER}-${BRANCH_NAME}.jar -t pom.artifactId .
                      
                      '''
+                }
+            }
+        }
+
+        stage('push image') {
+            stepss {
+                script {
+                    sh '''
+                    sudo aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 982534389470.dkr.ecr.us-east-1.amazonaws.com
+                    docker tag pom.artifactId:${BUILD_NUMBER} 982534389470.dkr.ecr.us-east-1.amazonaws.com/petclinic:${BUILD_NUMBER}
+                    docker push 982534389470.dkr.ecr.us-east-1.amazonaws.com/petclinic:${BUILD_NUMBER}
+                    '''
                 }
             }
         }
