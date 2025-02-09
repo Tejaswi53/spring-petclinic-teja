@@ -82,7 +82,7 @@ pipeline {
                 script {
                     sh '''
                         ls ${WORKSPACE}/target
-                        mv ${WORKSPACE}/target/spring-petclinic-3.4.0-SNAPSHOT.jar spring-petclinic-${BUILD_NUMBER}-${BRANCH_NAME}.jar
+                        mv ${WORKSPACE}/target/spring-petclinic-3.4.0-SNAPSHOT.jar pom.artifactId-${BUILD_NUMBER}-${BRANCH_NAME}.jar
                         ls ${WORKSPACE}/target
                         echo "${WORKSPACE}"
                     '''                   
@@ -90,7 +90,7 @@ pipeline {
             }
         }
 
-        stage('docker build') {
+        /*stage('docker build') {
             steps {
                 script {
                     sh '''
@@ -116,6 +116,6 @@ pipeline {
                   }
                 }
             }
-        }
+        }*/
     }
 }
