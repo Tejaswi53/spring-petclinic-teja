@@ -82,7 +82,7 @@ pipeline {
                 script {
                     sh '''
                         ls ${WORKSPACE}/target
-                        mv ${WORKSPACE}/target/spring-petclinic-3.4.0-SNAPSHOT.jar pom.artifactId-${BUILD_NUMBER}-${BRANCH_NAME}.jar
+                        mv ${WORKSPACE}/target/spring-petclinic-3.4.0-SNAPSHOT.jar ${pom.artifactId}-${BUILD_NUMBER}-${BRANCH_NAME}.jar
                         ls ${WORKSPACE}/target
                         echo "${WORKSPACE}"
                     '''                   
