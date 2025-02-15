@@ -86,7 +86,7 @@ pipeline {
                      def pom = readMavenPom file: "pom.xml";
                      def artifactId = pom.artifactId
                         //ls ${WORKSPACE}/target
-                     sh "mv ${WORKSPACE}/target/spring-petclinic-3.4.0-SNAPSHOT.jar ${artifactId}-${BUILD_NUMBER}-${BRANCH_NAME}.jar"
+                     sh "mv ${WORKSPACE}/target/spring-petclinic-3.4.0-SNAPSHOT.jar ${artifactId}-${BUILD_NUMBER}-${env.BRANCH_NAME}.jar"
                        // ls ${WORKSPACE}/target
                         //echo "${WORKSPACE}"
                                       
