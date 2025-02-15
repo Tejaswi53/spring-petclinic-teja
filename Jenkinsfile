@@ -80,7 +80,7 @@ pipeline {
             }
         }*/
 
-        /*stage('renaming') {
+        stage('renaming') {
             steps {
                 script {
                      pom = readMavenPom file: "pom.xml";
@@ -93,7 +93,7 @@ pipeline {
             }
         }
 
-        stage('docker build') {
+        /*stage('docker build') {
             steps {
                 script {
                     sh '''
