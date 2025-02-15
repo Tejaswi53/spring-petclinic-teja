@@ -94,7 +94,7 @@ pipeline {
             }
         }
 
-        /*stage('docker build') {
+        stage('docker build') {
             steps {
                 script {
                     sh '''
@@ -106,7 +106,7 @@ pipeline {
             }
         }
 
-        stage('push image') {
+        /*stage('push image') {
             steps {
                 withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'aws', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                  // some block
