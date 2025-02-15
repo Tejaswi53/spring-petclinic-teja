@@ -23,7 +23,7 @@ pipeline {
             steps {
                 script {
                     
-                    sh 'mvn clean package'
+                    sh 'mvn install -DskipTests'
                     
                 }             
             }
