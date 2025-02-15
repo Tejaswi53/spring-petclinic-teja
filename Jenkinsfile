@@ -1,13 +1,16 @@
 pipeline {
     agent any
+     tools {
+        maven "maven3"
+     }
 
-     environment {
+     /*environment {
         NEXUS_VERSION = "nexus3"
         NEXUS_PROTOCOL = "http"
         NEXUS_URL = "35.208.25.168:8081"
         NEXUS_REPOSITORY = "maven-snapshots"
         NEXUS_CREDENTIAL_ID = "nexus-integration"
-     }
+     }*/
 
      stages {
         stage('git clone') {
@@ -19,14 +22,14 @@ pipeline {
         stage('maven build') {
             steps {
                 script {
-                    withSonarQubeEnv('sonarqube') {
-                        sh 'mvn clean package sonar:sonar'
-                    }
+                    
+                    sh 'mvn clean package'
+                    
                 }             
             }
         }
 
-        stage('quality check') {
+        /*stage('quality check') {
             steps {
                 script {
                     timeout(time: 10, unit: 'MINUTES') {
@@ -35,9 +38,9 @@ pipeline {
 
                 }
             }
-        }
+        }*/
 
-        stage('uploading to nexus') {
+        /*stage('uploading to nexus') {
             steps {
                 script {
                     pom = readMavenPom file: "pom.xml";
@@ -75,12 +78,12 @@ pipeline {
                     }
                 }
             }
-        }
+        }*/
 
-        stage('renaming') {
+        /*stage('renaming') {
             steps {
                 script {
-                    
+                     pom = readMavenPom file: "pom.xml";
                         //ls ${WORKSPACE}/target
                      sh "mv ${WORKSPACE}/target/spring-petclinic-3.4.0-SNAPSHOT.jar ${pom.artifactId}-${BUILD_NUMBER}-${BRANCH_NAME}.jar"
                        // ls ${WORKSPACE}/target
@@ -90,7 +93,7 @@ pipeline {
             }
         }
 
-        /*stage('docker build') {
+        stage('docker build') {
             steps {
                 script {
                     sh '''
