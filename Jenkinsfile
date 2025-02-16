@@ -128,6 +128,7 @@ pipeline {
                  // some block
                   script {
                     sh ' kubectl get pods '
+                    sh ' kubectl get nodes '
                   }
                 }
             }
