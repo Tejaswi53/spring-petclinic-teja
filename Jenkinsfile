@@ -124,9 +124,11 @@ pipeline {
 
         stage('integrating eks cluster') {
             steps {
-                withKubeCredentials(kubectlCredentials: [[caCertificate: '', clusterName: ' petclinic-cluster', contextName: '', credentialsId: 'k8s-serviceAccount', namespace: 'petclinic', serverUrl: 'https://9559D8ABB0E217B8F6BF6254BAA6DF74.gr7.us-east-2.eks.amazonaws.com']]) {
+                withKubeCredentials(kubectlCredentials: [[caCertificate: '', clusterName: 'petclinic', contextName: '', credentialsId: 'kubernetes-petclinic', namespace: 'petclinic', serverUrl: 'https://9D42EA8E2C4177E3C728FEE2188DB960.sk1.us-west-1.eks.amazonaws.com']]) {
                  // some block
                   script {
+                    sh ' kubectl get ns '
+                    sh ' kubectl apply -f deployment.yaml '
                     sh ' kubectl get pods '
                     sh ' kubectl get nodes '
                   }
