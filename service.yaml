@@ -1,0 +1,73 @@
+---
+apiVersion: v1
+kind: ServiceAccount 
+metadata: 
+  name: petclinic
+  namespace: petclinic
+
+---
+apiVersion: v1
+kind: Secret
+type: kubernetes.io/service-account-token
+metadata: 
+  name: petclinic-service-token
+  namespace: petclinic
+  annotations:
+    kubernetes.io/service-account.name: petclinic 
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: petcliniClusterAdmin
+  #namespace: eureka
+rules:
+  - apiGroups:
+        - ""
+        - apps
+        - autoscaling
+        - batch
+        - extensions
+        - policy
+        - nodes
+        - rbac.authorization.k8s.io
+    resources:
+      - pods
+      - componentstatuses
+      - configmaps
+      - daemonsets
+      - deployments
+      - events
+      - endpoints
+      - horizontalpodautoscalers
+      - ingress
+      - jobs
+      - limitranges
+      - namespaces
+      - nodes
+      - pods
+      - persistentvolumes
+      - persistentvolumeclaims
+      - resourcequotas
+      - replicasets
+      - replicationcontrollers
+      - serviceaccounts
+      - secrets 
+      - services
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]   
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: petclinic-cluster-admin-role-binding
+  namespace: petclinic
+subjects:
+- kind: ServiceAccount
+  name: petclinic-service # "name" is case sensitive
+  namespace: petclinic
+  apiGroup: ""
+roleRef:
+  kind: ClusterRole #this must be Role or ClusterRole
+  name: petclinicClusterAdmin # this must match the name of the Role or ClusterRole you wish to bind to
+  apiGroup: rbac.authorization.k8s.io  

@@ -15,7 +15,7 @@ pipeline {
      stages {
         stage('git clone') {
             steps {
-                git branch: 'main', url: 'https://github.com/Tejaswi53/spring-petclinic-teja.git'
+                git branch: 'feature-1', url: 'https://github.com/Tejaswi53/spring-petclinic-teja.git'
             }
         }
 
@@ -80,7 +80,7 @@ pipeline {
             }
         }*/
 
-        stage('renaming') {
+        /*stage('renaming') {
             steps {
                 script {
                      def pom = readMavenPom file: "pom.xml";
@@ -100,25 +100,27 @@ pipeline {
                     sh '''
                       pwd
                       docker build --build-arg source_jar=spring-petclinic-${BUILD_NUMBER}-${BRANCH_NAME}.jar -t spring-petclinicapp:${BUILD_NUMBER} .
-                     
+                      docker tag spring-petclinicapp:${BUILD_NUMBER} 976193221273.dkr.ecr.us-east-1.amazonaws.com/spring-petclinic:${BUILD_NUMBER}
+                      docker push 976193221273.dkr.ecr.us-east-1.amazonaws.com/spring-petclinic:${BUILD_NUMBER}
                      '''
                 }
             }
-        }
+        }*/
 
         stage('push image') {
             steps {
-                withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'aws', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+                //withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'aws', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                  // some block
                 
                   script {
                     sh '''
-                    aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 976193221273.dkr.ecr.us-east-1.amazonaws.com
-                    docker tag spring-petclinicapp:${BUILD_NUMBER} 976193221273.dkr.ecr.us-east-1.amazonaws.com/spring-petclinic:${BUILD_NUMBER}
-                    docker push 976193221273.dkr.ecr.us-east-1.amazonaws.com/spring-petclinic:${BUILD_NUMBER}
+                    aws ecr get-login-password --region us-west-1 | docker login --username AWS --password-stdin 987014986560.dkr.ecr.us-west-1.amazonaws.com
+                    docker build -t task4 .
+                    docker tag task4:latest 987014986560.dkr.ecr.us-west-1.amazonaws.com/task4:latest
+                    docker push 987014986560.dkr.ecr.us-west-1.amazonaws.com/task4:latest
                     '''
                   }
-                }
+                
             }
         }
 
