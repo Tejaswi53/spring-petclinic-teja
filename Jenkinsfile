@@ -1,8 +1,6 @@
 pipeline {
     agent any
-     tools {
-        maven "maven3"
-     }
+     
 
      /*environment {
         NEXUS_VERSION = "nexus3"
@@ -23,7 +21,7 @@ pipeline {
             steps {
                 script {
                     
-                    sh 'mvn install -DskipTests'
+                    sh 'mvn clean install -DskipTests'
                     
                 }             
             }
